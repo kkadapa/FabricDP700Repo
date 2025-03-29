@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLQueryset",
+    "displayName": "EventMonitoringSQL",
+    "description": "EventMonitoringSQL"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0f6aac46-52e4-ad01-49e0-8a41773e039d"
+  }
+}
