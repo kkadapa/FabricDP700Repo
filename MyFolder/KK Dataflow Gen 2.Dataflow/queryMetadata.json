@@ -1,0 +1,23 @@
+{
+  "formatVersion": "202409",
+  "lastModified": null,
+  "editingSession": {
+    "computeEngineSettings": {
+      "allowFastCopy": true
+    },
+    "editingSessionMashup": {
+      "mashupName": "KK Dataflow Gen 2",
+      "queryGroups": [],
+      "documentLocale": "en-US",
+      "queriesMetadata": {},
+      "connectionOverrides": [],
+      "fastCombine": false,
+      "allowNativeQueries": true,
+      "hostProperties": {
+        "dataflowRefreshOutputFileFormat": "Parquet",
+        "enableDateTimeFieldsForStaging": "true",
+        "enablePublishWithoutLoadedQueries": "true"
+      }
+    }
+  }
+}

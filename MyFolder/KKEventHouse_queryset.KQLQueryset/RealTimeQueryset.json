@@ -1,0 +1,46 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "df532688-7da0-4269-9f01-8589cce26083",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "02e00eea-2305-9327-4e71-757ae779c386",
+        "databaseItemName": "KKEventHouse"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "883fae33-b2ff-4e44-b3ef-bedec6562120",
+        "content": "//***********************************************************************************************************\n// Here are two articles to help you get started with KQL:\n// KQL reference guide - https://aka.ms/KQLguide\n// SQL - KQL conversions - https://aka.ms/sqlcheatsheet\n//***********************************************************************************************************\n\n// Use \"take\" to view a sample number of records in the table and check the data.\nYOUR_TABLE_HERE\n| take 100\n\n// See how many records are in the table.\nYOUR_TABLE_HERE\n| count\n\n// This query returns the number of ingestions per hour in the given table.\nYOUR_TABLE_HERE\n| summarize IngestionCount = count() by bin(ingestion_time(), 1h)\n\n",
+        "title": "",
+        "dataSourceId": "df532688-7da0-4269-9f01-8589cce26083"
+      },
+      {
+        "id": "2e1b7769-5310-4a12-ba7d-7fd187f2a8b0",
+        "content": "// Use 'take' to view a sample number of records in the table and check the data.\nBicyclesDestination\n| take 5\n\n\n",
+        "title": "",
+        "dataSourceId": "df532688-7da0-4269-9f01-8589cce26083"
+      },
+      {
+        "id": "e389856d-03eb-4c0a-8510-2c8e018b1339",
+        "content": "// Use 'take' to view a sample number of records in the table and check the data.\nBicyclesDestination\n| take 5\n\n\nBicyclesDestination\n| where Street == \"Culvert Road\" | take 5\n\nBicyclesDestination\n| take 100\n| count \n\n// Most recent \nBicyclesDestination\n| top 10 by ingestion_time() desc\n\n// Most recent but only selected columns\nBicyclesDestination\n| top 10 by ingestion_time() desc\n| project BikepointID, No_Bikes, No_Empty_Docks\n\n\n// Most recent and add new column\nBicyclesDestination\n| top 10 by ingestion_time() desc\n| project BikepointID, No_Bikes, No_Empty_Docks\n| extend IngestionTS = ingestion_time()\n\n// Most recent and add new column also sort by asc\nBicyclesDestination\n| top 10 by ingestion_time() desc\n| project BikepointID, No_Bikes, No_Empty_Docks\n| extend IngestionTS = ingestion_time()\n| sort by BikepointID asc \n\n\n//1. Exact String Match (Case-sensitive)\nBicyclesDestination\n| where Neighbourhood == \"Mile End\"\n\n//2. Exact String Match (Case-Insensitive - try not to use not recomend)\nBicyclesDestination\n| where Neighbourhood =~ \"Mile End\"\n\n\n//3. String Has is more efficient\nBicyclesDestination\n| where Street has \"End\"\n\n//4. String contains (Less Recommended )\nBicyclesDestination\n| where Street contains \"End\"\n\n//5. String starts with \nBicyclesDestination\n| where Neighbourhood startswith \"West\"\n\n//6. Ends with\nBicyclesDestination\n| where BikepointID endswith \"649\"\n\n//7. String Not Equal\nBicyclesDestination\n| where Neighbourhood != \"West End\"\n\n//8. Numeric Filters\nBicyclesDestination\n| where No_Bikes == 0\n| where No_Empty_Docks > 30\n| where Latitude between (51.461 .. 51.472)\n\n//9 Datetime equality (exact match)\nBicyclesDestination\n| where ingestion_time() == datetime(2025-02-17 10:00:00)\n\n//10 Date/Time Range (After a specific date/time)\nBicyclesDestination\n| where ingestion_time() > datetime(2025-02-18 10:15:00)\n\n//between ago and now()\nBicyclesDestination\n| where ingestion_time() between (ago(24h) .. now())\n\n//records ingested yesterday\nBicyclesDestination\n| where ingestion_time() between (startofday(ago(1d)) .. endofday(ago(1d)))\n\n\n//series_decompose_anomalies() To detect anomalies\n\n\n",
+        "title": "",
+        "dataSourceId": "df532688-7da0-4269-9f01-8589cce26083"
+      },
+      {
+        "id": "c08e514f-ba5d-456b-a9ae-a47f530eafb1",
+        "content": "//Summarizings & Aggregations\n\n//1. Generic structure for an aggregation in KQL\nBicyclesDestination\n| summarize TotalEvents = count()\n\nBicyclesDestination\n| summarize TotalEvents = count() by BikepointID\n| sort by TotalEvents desc \n| top 1 by TotalEvents\n\n//3. Multiple aggregates\nBicyclesDestination\n| summarize TotalEvents = count(), MiniBikes = min(No_Bikes) by BikepointID",
+        "title": "",
+        "dataSourceId": "df532688-7da0-4269-9f01-8589cce26083"
+      },
+      {
+        "id": "ad5ee766-f770-4d73-aa61-11fe3aef8e61",
+        "content": ".show tables\n\n.create table ExamScores(\n    student_id:guid,\n    exam_score:int,\n    exam_code:string\n)\n\n.ingest inline into table ExamScores <|\n8fc23b7e-9d14-b135-f89ca2e6d0a2, 700, DP-700\n8fc159ee-9d23-b136-f89ca2e6dabc, 876, DP-700\n\n\n",
+        "title": "",
+        "dataSourceId": "df532688-7da0-4269-9f01-8589cce26083"
+      }
+    ]
+  }
+}

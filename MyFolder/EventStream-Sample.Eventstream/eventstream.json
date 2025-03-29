@@ -1,0 +1,47 @@
+{
+  "sources": [
+    {
+      "id": "408e2b45-0bbf-419a-9a89-2c430be984eb",
+      "name": "SampleBicycles",
+      "type": "SampleData",
+      "properties": {
+        "type": "Bicycles"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "id": "c9bf2ae2-33e2-4af1-9e33-8cfab1ccc317",
+      "name": "TestDestination",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "DirectIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "02e00eea-2305-9327-4e71-757ae779c386",
+        "tableName": "BicyclesDestination",
+        "connectionName": "EventStream-Sample_KKEventHouse-Bicycles",
+        "mappingRuleName": "BicyclesDestination_mapping"
+      },
+      "inputNodes": [
+        {
+          "name": "EventStream-Sample-stream"
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "db5c20f7-5e97-45bf-ac7d-b5700723f417",
+      "name": "EventStream-Sample-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "SampleBicycles"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.0"
+}
